@@ -1,13 +1,9 @@
 {
   "$GMObject":"",
-  "%Name":"objPacMan",
-  "eventList":[
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":2,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-  ],
+  "%Name":"objFantasma",
+  "eventList":[],
   "managed":true,
-  "name":"objPacMan",
+  "name":"objFantasma",
   "overriddenProperties":[],
   "parent":{
     "name":"Objects",
@@ -32,8 +28,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"sprPacMan",
-    "path":"sprites/sprPacMan/sprPacMan.yy",
+    "name":"sprFantasma",
+    "path":"sprites/sprFantasma/sprFantasma.yy",
   },
   "spriteMaskId":null,
   "visible":true,

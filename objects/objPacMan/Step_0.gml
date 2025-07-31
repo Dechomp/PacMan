@@ -22,12 +22,20 @@
 	if moviHorizontal == -1 or moviHorizontal == 1{
 		hori = moviHorizontal
 		image_xscale = sign(moviHorizontal)
+		image_angle = 0
 		vert = 0
 	}
 	
-	if moviVertical == -1 or moviVertical == 1{
+	else if moviVertical == -1 or moviVertical == 1{
 		vert = moviVertical
-		image_yscale = sign(moviVertical)
+		
+		if image_xscale == -1{
+			image_angle = 270 * moviVertical * -1
+		}
+		else{
+			image_angle = 90 * moviVertical * -1
+		}
+		
 		hori = 0
 	}
 	

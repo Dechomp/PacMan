@@ -1,61 +1,94 @@
-//var colisaoHori = place_meeting(x + hori * velocidade, y , objParede) or place_meeting(x + hori * velocidade, y , objCanto)
-//var colisiaoVertical =  place_meeting(x , y + vert * velocidade, objParede) or place_meeting(x , y + vert * velocidade, objCanto)
+var colisaoHori = place_meeting(x + hori * velocidade, y , objParede) or place_meeting(x + hori * velocidade, y , objCanto)
+var colisiaoVertical =  place_meeting(x , y + vert * velocidade, objParede) or place_meeting(x , y + vert * velocidade, objCanto)
 
-var colisaoHoriEsq = place_meeting(x + -1 * velocidade, y , objParede) or place_meeting(x + -1 * velocidade, y , objCanto)
-var colisaoHoriDir = place_meeting(x + 1 * velocidade, y , objParede) or place_meeting(x + 1 * velocidade, y , objCanto)
-var colisiaoVertCima =  place_meeting(x , y + -1 * velocidade, objParede) or place_meeting(x , y + -1 * velocidade, objCanto) 
-var colisiaoVertBaixo =  place_meeting(x , y + 1 * velocidade, objParede) or place_meeting(x , y + 1 * velocidade, objCanto)
 
 #region Movimentação
+	
+	
 	xAnterior = x
-	yAnterior = y
-
+    yAnterior = y	
 	
+	
+	var colisaoHoriEsq = place_meeting(x + -1 * velocidade, y , objParede) or place_meeting(x + -1 * velocidade, y , objCanto)
+	var colisaoHoriDir = place_meeting(x + 1 * velocidade, y , objParede) or place_meeting(x + 1 * velocidade, y , objCanto)
+	var colisiaoVertCima =  place_meeting(x , y + -1 * velocidade, objParede) or place_meeting(x , y + -1 * velocidade, objCanto) 
+	var colisiaoVertBaixo =  place_meeting(x , y + 1 * velocidade, objParede) or place_meeting(x , y + 1 * velocidade, objCanto)
+
+	#region Estratégia
+
 		
-	
-	
-var colisaoHoriEsq = place_meeting(x + -1 * velocidade, y , objParede) or place_meeting(x + -1 * velocidade, y , objCanto)
-var colisaoHoriDir = place_meeting(x + 1 * velocidade, y , objParede) or place_meeting(x + 1 * velocidade, y , objCanto)
-var colisiaoVertCima =  place_meeting(x , y + -1 * velocidade, objParede) or place_meeting(x , y + -1 * velocidade, objCanto) 
-var colisiaoVertBaixo =  place_meeting(x , y + 1 * velocidade, objParede) or place_meeting(x , y + 1 * velocidade, objCanto)
-
-#region Estratégia
 		xPacMan = objPacMan.x
 		yPacMan = objPacMan.y
 		
+		ditanciaX = xPacMan - x
+		ditanciaY = yPacMan - y
 		
-		if colisaoHoriEsq{
-			
+		if ditanciaX > 15 and  ! colisaoHoriDir{
+			hori = 1
+			vert = 0
 		}
-		else if xPacMan < x{
+		else if colisaoHoriDir{
+			if !colisiaoVertBaixo{
+				vert = 1
+			}
+			else if ! colisiaoVertCima{
+				vert = -1
+			}
+			hori = 0
+		}
+		
+		else if ditanciaX < -15 and ! colisaoHoriEsq{
 			hori = -1
 			vert = 0
 		}
 		
-		else if colisaoHoriDir{
-		
+		else if colisaoHoriEsq{
+			if !colisiaoVertBaixo{
+				vert = 1
+			}
+			else if ! colisiaoVertCima{
+				vert = -1
+			}
+			hori = 0
 		}
-		else if xPacMan > x{
-			hori = 1
+		
+		
+		else if ditanciaY > 15 and  ! colisiaoVertBaixo{
+			hori = 0
+			vert = 1
+		}
+		else if colisiaoVertBaixo{
+			if !colisaoHoriEsq{
+				hori = -1
+			}
+			else if ! colisaoHoriDir{
+				hori = 1
+			}
 			vert = 0
 		}
-		else if xPacMan == x {
-			if colisiaoVertCima{
 		
-			} else if yPacMan < y{
-				vert = -1
-				hori = 0	
-			}
-			if colisiaoVertBaixo{
 		
+		else if ditanciaY < -15 and ! colisiaoVertCima{
+			hori = 0
+			vert = -1
+		}	
+		else if colisiaoVertCima{
+			if !colisaoHoriEsq{
+				hori = -1
 			}
-			else if yPacMan > y {
-				vert = 1
-				hori = 0
+			else if ! colisaoHoriDir{
+				hori = 1
 			}
+			vert = 0
 		}
 		
-#endregion
+		
+		
+		
+		
+		
+		
+	#endregion
 	
 	x += hori * velocidade
 	y += vert * velocidade
